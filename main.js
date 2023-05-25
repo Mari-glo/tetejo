@@ -16,16 +16,16 @@ class Tejido {
     this.cantidad = 1;
   }
 }
-const amongus = new Tejido(1, "Among Us", 5000, "img/prod_amongus.jpg");
-const babyyoda = new Tejido(2, "Baby Yoda", 7000, "img/prod_babyyoda.jpg");
-const cartera = new Tejido(3, "Carterita tejida", 9500, "img/prod_carterita.jpg");
-const charmander = new Tejido(4, "Charmander", 8990, "img/prod_charmander.jpg");
-const kirby = new Tejido(5, "kirby", 7500, "img/prod_kirby.jpg");
-const merida = new Tejido(6, "Mérida", 19000, "img/prod_merida.jpg");
-const mickey = new Tejido(7, "Mickey Abstracto", 5500, "img/prod_mickey.jpg");
-const nube = new Tejido(8, "Nubecitas", 4000, "img/prod_nube.jpg");
-const pokebola = new Tejido(9, "Pokebolas", 4500, "img/prod_pokebolas.jpg");
-const pulpo = new Tejido(10, "Pulpito de apego", 8500, "img/prod_pulpitos.jpg");
+const amongus = new Tejido(1, "Among Us", 5000, "./img/prod_amongus.jpg");
+const babyyoda = new Tejido(2, "Baby Yoda", 7000, "./img/prod_babyyoda.jpg");
+const cartera = new Tejido(3, "Carterita tejida", 9500, "./img/prod_carterita.jpg");
+const charmander = new Tejido(4, "Charmander", 8990, "./img/prod_charmander.jpg");
+const kirby = new Tejido(5, "kirby", 7500, "./img/prod_kirby.jpg");
+const merida = new Tejido(6, "Mérida", 19000, "./img/prod_merida.jpg");
+const mickey = new Tejido(7, "Mickey Abstracto", 5500, "./img/prod_mickey.jpg");
+const nube = new Tejido(8, "Nubecitas", 4000, "./img/prod_nube.jpg");
+const pokebola = new Tejido(9, "Pokebolas", 4500, "./img/prod_pokebolas.jpg");
+const pulpo = new Tejido(10, "Pulpito de apego", 8500, "./img/prod_pulpitos.jpg");
 
 //crear un array con todos los productos
 
