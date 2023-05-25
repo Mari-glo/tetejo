@@ -1,0 +1,19 @@
+.imgTejidos {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    margin-top: 1rem;
+    }
+.card {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem;
+}
+.botonCreado {
+    color: white;
+    background-color: darkmagenta;
+}
+.botonCreado:hover {
+    background-color: blueviolet;
+    color: white
+}
