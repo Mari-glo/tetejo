@@ -1,6 +1,10 @@
 * a {
     text-decoration: none;
 }
+.pink {
+    background-color: rgb(245, 149, 197);
+    color:deeppink;
+}
 .imgTejidos {
     width: 200px;
     height: 200px;
@@ -14,7 +18,7 @@
 }
 .botonCreado {
     color: white;
-    background-color: darkmagenta;
+    background-color: deeppink;
 }
 .botonCreado:hover {
     background-color: blueviolet;
@@ -28,7 +32,7 @@
 }
 
 .nav-link:hover {
-    background-color: darkmagenta;
+    background-color:rgb(245, 149, 197) ;
 }
 .nav__foot a {
     color: #ffffff;

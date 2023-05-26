@@ -1,11 +1,11 @@
-/**mi tiendita te te jo **/
-
-
-//guardar en localstorage
-//modificar las cantidades
 //pinkmode para Nacho
-//finalizar compra
-//aplicar descuentos
+
+const pinky = document.getElementById("botonPink");
+pinky.addEventListener("click", () => {
+  document.body.classList.toggle("pink");
+});
+
+/**mi tiendita te te jo **/
 
 class Tejido {
   constructor(id, nombre, valor, img) {
@@ -18,8 +18,18 @@ class Tejido {
 }
 const amongus = new Tejido(1, "Among Us", 5000, "./img/prod_amongus.jpg");
 const babyyoda = new Tejido(2, "Baby Yoda", 7000, "./img/prod_babyyoda.jpg");
-const cartera = new Tejido(3, "Carterita tejida", 9500, "./img/prod_carterita.jpg");
-const charmander = new Tejido(4, "Charmander", 8990, "./img/prod_charmander.jpg");
+const cartera = new Tejido(
+  3,
+  "Carterita tejida",
+  9500,
+  "./img/prod_carterita.jpg"
+);
+const charmander = new Tejido(
+  4,
+  "Charmander",
+  8990,
+  "./img/prod_charmander.jpg"
+);
 const kirby = new Tejido(5, "kirby", 7500, "./img/prod_kirby.jpg");
 const merida = new Tejido(6, "Mérida", 19000, "./img/prod_merida.jpg");
 const mickey = new Tejido(7, "Mickey Abstracto", 5500, "./img/prod_mickey.jpg");
@@ -29,7 +39,7 @@ const pulpo = new Tejido(10, "Pulpito de apego", 8500, "./img/prod_pulpitos.jpg"
 
 //crear un array con todos los productos
 
-const tejidos = [amongus, babyyoda, cartera, charmander, kirby, merida, mickey, nube, pokebola, pulpo];
+const tejidos = [ amongus, babyyoda, cartera, charmander, kirby, merida, mickey, nube, pokebola, pulpo,];
 
 //crear el array del canasto de compras
 
@@ -103,54 +113,61 @@ const mostrarCanasto = () => {
                     </div>`;
     contenedorCanasto.appendChild(card);
 
-    //eliminar productos del carrito
+    //eliminar productos del canasto
 
-    const eliminar= document.getElementById(`eliminar${tejido.id}`);
-    eliminar.addEventListener("click",()=>{
-        eliminarDelCanasto(tejido.id);
-    })
+    const eliminar = document.getElementById(`eliminar${tejido.id}`);
+    eliminar.addEventListener("click", () => {
+      eliminarDelCanasto(tejido.id);
+    });
 
     //aumentar y disminuir cantidad:
     const aumentar = document.getElementById(`aumentar${tejido.id}`);
     aumentar.addEventListener("click", () => {
-        tejido.cantidad++;
-        mostrarCanasto();
-    })
+      tejido.cantidad++;
+      mostrarCanasto();
+    });
     const disminuir = document.getElementById(`disminuir${tejido.id}`);
     disminuir.addEventListener("click", () => {
-        tejido.cantidad--;
-        mostrarCanasto();
-    })
+      tejido.cantidad--;
+      if (tejido.cantidad < 1) eliminarDelCanasto(tejido.id);
+      mostrarCanasto();
+    });
 
-    calcularTotal ();
+    calcularTotal();
   });
 };
-const eliminarDelCanasto=(id)=>{
-    const tejido = canasto.find(tejido => tejido.id ===id);
-    const indice = canasto.indexOf(tejido);
-    canasto.splice(indice, 1)
-    mostrarCanasto();
-}
+const eliminarDelCanasto = (id) => {
+  const tejido = canasto.find((tejido) => tejido.id === id);
+  const indice = canasto.indexOf(tejido);
+  canasto.splice(indice, 1);
+  mostrarCanasto();
+};
 
 //calcular el total de la compra:
 
 const total = document.getElementById("total");
 const calcularTotal = () => {
-    let totalCompra = 0;
-    canasto.forEach (tejido => {
-        totalCompra += tejido.valor * tejido.cantidad;
-    })
-    total.innerHTML= `$${totalCompra} CLP`;
-}
+  let totalCompra = 0;
+  canasto.forEach((tejido) => {
+    totalCompra += tejido.valor * tejido.cantidad;
+  });
+  total.innerHTML = `$${totalCompra} CLP`;
+};
+
+//guardar en local Storage
+const canastoJSON = JSON.stringify(canasto);
+localStorage.setItem("canasto", canastoJSON);
+const recuperarCanasto = localStorage.getItem("canasto");
+const canastoObjeto = JSON.parse(recuperarCanasto);
 
 //vaciar el canasto de compra
 
 const vaciarCanasto = document.getElementById("vaciarCanasto");
 vaciarCanasto.addEventListener("click", () => {
-    eliminarTodo();
-})
-const eliminarTodo =() => {
-    canasto = [];
-    mostrarCanasto();
-}
-
+  eliminarTodo();
+});
+const eliminarTodo = () => {
+  canasto = [];
+  localStorage.clear();
+  mostrarCanasto();
+};
