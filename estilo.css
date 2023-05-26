@@ -1,3 +1,6 @@
+* a {
+    text-decoration: none;
+}
 .imgTejidos {
     width: 200px;
     height: 200px;
@@ -16,4 +19,21 @@
 .botonCreado:hover {
     background-color: blueviolet;
     color: white
+}
+.portada {
+    height: 60vh;
+    background-image: url(./img/portada.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.nav-link:hover {
+    background-color: darkmagenta;
+}
+.nav__foot a {
+    color: #ffffff;
+}
+
+.nav__foot a:hover {
+    color: darkmagenta;
 }

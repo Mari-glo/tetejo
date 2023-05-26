@@ -97,6 +97,8 @@ const mostrarCanasto = () => {
                         <p class="card-text">$${tejido.valor} CLP</p>
                         <p class="card-text">${tejido.cantidad}</p>
                         <button id="eliminar${tejido.id}" class= "btn botonCreado"> Eliminar </button>
+                        <button id="aumentar${tejido.id}" class= "btn botonCreado"> + </button>
+                        <button id="disminuir${tejido.id}" class= "btn botonCreado"> - </button>
                     </div>
                     </div>`;
     contenedorCanasto.appendChild(card);
@@ -107,6 +109,19 @@ const mostrarCanasto = () => {
     eliminar.addEventListener("click",()=>{
         eliminarDelCanasto(tejido.id);
     })
+
+    //aumentar y disminuir cantidad:
+    const aumentar = document.getElementById(`aumentar${tejido.id}`);
+    aumentar.addEventListener("click", () => {
+        tejido.cantidad++;
+        mostrarCanasto();
+    })
+    const disminuir = document.getElementById(`disminuir${tejido.id}`);
+    disminuir.addEventListener("click", () => {
+        tejido.cantidad--;
+        mostrarCanasto();
+    })
+
     calcularTotal ();
   });
 };
@@ -125,7 +140,7 @@ const calcularTotal = () => {
     canasto.forEach (tejido => {
         totalCompra += tejido.valor * tejido.cantidad;
     })
-    total.innerHTML= `Total: $${totalCompra} CLP`;
+    total.innerHTML= `$${totalCompra} CLP`;
 }
 
 //vaciar el canasto de compra
