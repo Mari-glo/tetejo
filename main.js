@@ -16,26 +16,16 @@ class Tejido {
     this.cantidad = 1;
   }
 }
-const amongus = new Tejido(1, "Among Us", 5000, "./img/prod_amongus.jpg");
-const babyyoda = new Tejido(2, "Baby Yoda", 7000, "./img/prod_babyyoda.jpg");
-const cartera = new Tejido(
-  3,
-  "Carterita tejida",
-  9500,
-  "./img/prod_carterita.jpg"
-);
-const charmander = new Tejido(
-  4,
-  "Charmander",
-  8990,
-  "./img/prod_charmander.jpg"
-);
-const kirby = new Tejido(5, "kirby", 7500, "./img/prod_kirby.jpg");
-const merida = new Tejido(6, "Mérida", 19000, "./img/prod_merida.jpg");
-const mickey = new Tejido(7, "Mickey Abstracto", 5500, "./img/prod_mickey.jpg");
-const nube = new Tejido(8, "Nubecitas", 4000, "./img/prod_nube.jpg");
-const pokebola = new Tejido(9, "Pokebolas", 4500, "./img/prod_pokebolas.jpg");
-const pulpo = new Tejido(10, "Pulpito de apego", 8500, "./img/prod_pulpitos.jpg");
+const amongus = new Tejido(1, "Among Us", 5000, "./img/prod_amongus.JPG");
+const babyyoda = new Tejido(2, "Baby Yoda", 7000, "./img/prod_babyyoda.JPG");
+const cartera = new Tejido( 3, "Carterita tejida", 9500, "./img/prod_carterita.JPG");
+const charmander = new Tejido( 4, "Charmander", 8990, "./img/prod_charmander.JPG");
+const kirby = new Tejido(5, "kirby", 7500, "./img/prod_kirby.JPG");
+const merida = new Tejido(6, "Mérida", 19000, "./img/prod_merida.JPG");
+const mickey = new Tejido(7, "Mickey Abstracto", 5500, "./img/prod_mickey.JPG");
+const nube = new Tejido(8, "Nubecitas", 4000, "./img/prod_nube.JPG");
+const pokebola = new Tejido(9, "Pokebolas", 4500, "./img/prod_pokebolas.JPG");
+const pulpo = new Tejido( 10, "Pulpito de apego", 8500, "./img/prod_pulpitos.JPG");
 
 //crear un array con todos los productos
 
@@ -124,12 +114,14 @@ const mostrarCanasto = () => {
     const aumentar = document.getElementById(`aumentar${tejido.id}`);
     aumentar.addEventListener("click", () => {
       tejido.cantidad++;
+      guardarCanastoEnLocalStorage();
       mostrarCanasto();
     });
     const disminuir = document.getElementById(`disminuir${tejido.id}`);
     disminuir.addEventListener("click", () => {
       tejido.cantidad--;
       if (tejido.cantidad < 1) eliminarDelCanasto(tejido.id);
+      guardarCanastoEnLocalStorage();
       mostrarCanasto();
     });
 
@@ -140,6 +132,7 @@ const eliminarDelCanasto = (id) => {
   const tejido = canasto.find((tejido) => tejido.id === id);
   const indice = canasto.indexOf(tejido);
   canasto.splice(indice, 1);
+  guardarCanastoEnLocalStorage();
   mostrarCanasto();
 };
 
@@ -155,10 +148,18 @@ const calcularTotal = () => {
 };
 
 //guardar en local Storage
-const canastoJSON = JSON.stringify(canasto);
-localStorage.setItem("canasto", canastoJSON);
-const recuperarCanasto = localStorage.getItem("canasto");
-const canastoObjeto = JSON.parse(recuperarCanasto);
+const guardarCanastoEnLocalStorage = () => {
+  const canastoJSON = JSON.stringify(canasto);
+  localStorage.setItem("canasto", canastoJSON);
+};
+
+window.addEventListener("DOMContentLoaded", () => {
+  // Código para cargar el canasto desde el localStorage
+  const recuperarCanasto = localStorage.getItem("canasto");
+  if (recuperarCanasto) {
+    canasto = JSON.parse(recuperarCanasto);
+  }
+});
 
 //vaciar el canasto de compra
 
@@ -169,5 +170,6 @@ vaciarCanasto.addEventListener("click", () => {
 const eliminarTodo = () => {
   canasto = [];
   localStorage.clear();
+  guardarCanastoEnLocalStorage();
   mostrarCanasto();
 };
